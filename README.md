@@ -1,0 +1,2 @@
+# sd_webui_tokenize_anything
+tokenize_anything的webui插件，sam的升级版
