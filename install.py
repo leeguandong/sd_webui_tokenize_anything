@@ -17,7 +17,7 @@ concepts = os.path.join(os.path.dirname(os.path.realpath(__file__)), "concepts")
 
 run(f"mkdir {models}")
 run(f"cd {models}")
-run("wget https://huggingface.co/spaces/BAAI/tokenize-anything/resolve/main/models/tap_vit_l_548184.pkl")
+run("wget https://huggingface.co/spaces/BAAI/tokenize-anything/resolve/main/models/tap_vit_l_v1.pkl")
 
 run(f"mkdir {concepts}")
 run(f"cd {concepts}")
