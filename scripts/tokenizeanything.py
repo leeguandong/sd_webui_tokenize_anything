@@ -7,8 +7,8 @@ from modules import script_callbacks
 from tokenize_anything.engine.infer import Inference
 
 example_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-weights = os.path.join(example_path, "models")
-concept_weights = os.path.join(example_path, "concepts")
+weights = os.path.join(example_path, "models/tap_vit_l_v1_1.pkl")
+concept_weights = os.path.join(example_path, "concepts/merged_2560.pkl")
 
 infer = Inference(model_type="tap_vit_l", weights=weights, concept_weights=concept_weights)
 
@@ -75,12 +75,14 @@ def on_ui_tabs():
         app, _ = gr.Blocks(title=title, theme=theme, css=css).__enter__(), gr.Markdown(header)
         container, column = gr.Row().__enter__(), gr.Column().__enter__()
         click_tab, click_img = gr.Tab("Point+Box").__enter__(), gr_ext.ImagePrompter(show_label=False)
+        # click_tab, click_img = gr.Tab("Point+Box").__enter__(), gr.ImageEditor(show_label=False)
         interactions = "LeftClick (FG) | MiddleClick (BG) | PressMove (Box)"
         gr.Markdown("<h3 style='text-align: center'>[🖱️ | 🖐️]: 🌟🌟 {} 🌟🌟 </h3>".format(interactions))
         point_opt = gr.Radio(["Batch", "Ensemble"], label="Multipoint", type="index", value="Batch")
 
         _, draw_tab = click_tab.__exit__(), gr.Tab("Sketch").__enter__()
         draw_img, _ = gr.ImageEditor(show_label=False), draw_tab.__exit__()
+        # draw_img, _ = gr.Image(show_label=False), draw_tab.__exit__()
         prompt_opt = gr.Radio(["Click", "Draw"], type="index", visible=False, value="Click")
         row, reset_btn, submit_btn = gr.Row().__enter__(), gr.Button("Reset"), gr.Button("Execute")
         _, _, column = row.__exit__(), column.__exit__(), gr.Column().__enter__()
